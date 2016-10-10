@@ -29,7 +29,13 @@
                                    <li><a href="cadUser.php">Usuário</a></li>
                               </ul>
                          </li>
-                         <li role="presentation"><a href="logout.php">Logout</a></li>
+                         <li role="presentation">
+                              <a href="#" data-toggle="dropdown" class="dropdown-toggle"><?php echo $_SESSION['login']; ?></a>
+                              <ul class="dropdown-menu">
+                                   <li><a href="#">Perfil</a></li>
+                                   <li><a href="logout.php">Logout</a></li>
+                              </ul>
+                         </li>
                     </ul>
                </nav>
                <h3 class="text-muted">Final Project</h3>

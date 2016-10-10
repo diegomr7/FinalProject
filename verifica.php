@@ -1,7 +1,7 @@
 <?php
     session_start();
      
-    if (empty($_SESSION['senha'])) {
+    if (empty($_SESSION['login'])) {
         header('Location: login.html');
         exit();
     }
