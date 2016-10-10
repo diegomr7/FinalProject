@@ -8,11 +8,21 @@
         $senha=md5($_POST['senha']);
         $sql="SELECT * FROM usuario WHERE login='$login' AND senha='$senha'";
         $result=pg_exec($conexao, $sql);
+        $consulta = pg_fetch_array($result);
         
         if ($login != "" && $senha != ""){
             if (pg_num_rows($result) > 0) {
-                $_SESSION['login'] = $login;
-                header('location:index.html');
+                if ($consulta['situacao'] == "a") {
+                    $_SESSION['login'] = $login;
+                    $_SESSION['nome'] = $consulta['nome'];
+                    $_SESSION['categoria'] = $consulta['categoria'];
+                    $_SESSION['situacao'] = $consulta['situacao'];
+                    header('location:index.html');
+                } else {
+                    unset ($_SESSION['login']);
+                    unset ($_SESSION['senha']);
+                    echo "<h3 class='text-center'>O usuário não está ativo.</h3>";
+                }
             } else {
                 unset ($_SESSION['login']);
                 unset ($_SESSION['senha']);

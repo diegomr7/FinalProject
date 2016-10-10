@@ -11,7 +11,7 @@ CREATE TABLE public.usuario (
                 senha VARCHAR(50) NOT NULL,
                 nome VARCHAR(80) NOT NULL,
                 categoria CHAR(1) NOT NULL,
-                situao CHAR(1) NOT NULL,
+                situacao CHAR(1) NOT NULL,
                 CONSTRAINT usuario_pk PRIMARY KEY (login)
 );
 COMMENT ON COLUMN public.usuario.senha IS 'criptografar em md5';
