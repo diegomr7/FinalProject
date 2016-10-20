@@ -1,6 +1,3 @@
-<?php
-     include 'verifica.php';
-?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -79,8 +76,8 @@
                          <li role="presentation">
                               <a href="#" data-toggle="dropdown" class="dropdown-toggle">Relatório</a>
                               <ul class="dropdown-menu">
-                                   <li><a href="cadAluno.php">Aluno</a></li>
-                                   <li><a href="cadUser.php">Usuário</a></li>
+                                   <li><a href="relatAluno.php">Aluno</a></li>
+                                   <li><a href="relatUser.php">Usuário</a></li>
                               </ul>
                          </li>
                          <?php } }
@@ -102,63 +99,58 @@
         
           <div class="row marketing">
                <div class="col-lg-12">
-                    <form class="form-horizontal" action="gravaUser.php" method="post">
+                    <form class="form-horizontal" action="gravaAluno.php" method="post">
                          <fieldset>
                       
                               <legend class="text-center">Cadastro de usuário</legend>
                               
                               <div class="form-group">
-                                  <label class="col-md-4 control-label" for="login">Login:</label>  
-                                  <div class="col-md-6">
-                                      <input id="login" name="login" type="text" placeholder="Login..." class="form-control input-md">
-                                  </div>
+                                   <label class="col-md-4 control-label" for="matricula">Matrícula:</label>  
+                                   <div class="col-md-4">
+                                        <input id="matricula" name="matricula" type="text" placeholder="Matricula..." class="form-control input-md">
+                                   </div>
                               </div>
                               
                               <div class="form-group">
-                                  <label class="col-md-4 control-label" for="senha">Senha:</label>
-                                  <div class="col-md-6">
-                                      <input id="senha" name="senha" type="password" placeholder="Senha..." class="form-control input-md">
-                                  </div>
+                                   <label class="col-md-4 control-label" for="nome">Nome Completo</label>  
+                                   <div class="col-md-6">
+                                        <input id="nome" name="nome" type="text" placeholder="Nome completo..." class="form-control input-md">
+                                   </div>
                               </div>
                               
                               <div class="form-group">
-                                  <label class="col-md-4 control-label" for="confirmacao">Confirmação:</label>
-                                  <div class="col-md-6">
-                                      <input id="confirmacao" name="confirmacao" type="password" placeholder="Confirmação de senha..." class="form-control input-md">
-                                  </div>
+                                   <label class="col-md-4 control-label" for="sexo">Sexo</label>
+                                   <div class="col-md-4"> 
+                                        <label class="radio-inline" for="sexo-0">
+                                             <input type="radio" name="sexo" id="sexo-0" value="f" checked="checked">
+                                             Feminino
+                                        </label> 
+                                        <label class="radio-inline" for="sexo-1">
+                                             <input type="radio" name="sexo" id="sexo-1" value="m">
+                                             Masculino
+                                        </label>
+                                   </div>
                               </div>
                               
                               <div class="form-group">
-                                  <label class="col-md-4 control-label" for="nome">Nome:</label>  
-                                  <div class="col-md-6">
-                                      <input id="nome" name="nome" type="text" placeholder="Nome completo..." class="form-control input-md">
-                                  </div>
+                                   <label class="col-md-4 control-label" for="dtnasc">Data de nascimento:</label>  
+                                   <div class="col-md-4">
+                                        <input id="dtnasc" name="dtnasc" type="date" class="form-control input-md">
+                                   </div>
                               </div>
                               
                               <div class="form-group">
-                                  <label class="col-md-4 control-label" for="categoria">Categoria:</label>
-                                  <div class="col-md-6">
-                                      <select id="categoria" name="categoria" class="form-control">
-                                          <option value="">Selecione uma opção...</option>
-                                          <option value="c">Coordenador</option>
-                                          <option value="g">Gerente do PI</option>
-                                          <option value="p">Professor</option>
-                                      </select>
-                                  </div>
+                                   <label class="col-md-4 control-label" for="cidade">Cidade:</label>  
+                                   <div class="col-md-4">
+                                        <input id="cidade" name="cidade" type="text" placeholder="Cidade..." class="form-control input-md">
+                                   </div>
                               </div>
                               
                               <div class="form-group">
-                                  <label class="col-md-4 control-label" for="situacao">Situação:</label>
-                                  <div class="col-md-6"> 
-                                      <label class="radio-inline" for="situacao-0">
-                                          <input type="radio" name="situacao" id="situacao-0" value="a" checked="checked">
-                                          Ativo
-                                      </label> 
-                                      <label class="radio-inline" for="situacao-1">
-                                          <input type="radio" name="situacao" id="situacao-1" value="i">
-                                          Inativo
-                                      </label>
-                                  </div>
+                                   <label class="col-md-4 control-label" for="uf">UF:</label>  
+                                   <div class="col-md-4">
+                                        <input id="uf" name="uf" type="text" placeholder="UF..." class="form-control input-md">
+                                   </div>
                               </div>
                               
                               <div class="form-group text-center">

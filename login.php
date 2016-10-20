@@ -17,7 +17,7 @@
                     $_SESSION['nome'] = $consulta['nome'];
                     $_SESSION['categoria'] = $consulta['categoria'];
                     $_SESSION['situacao'] = $consulta['situacao'];
-                    header('location:index.html');
+                    header('location:index.php');
                 } else {
                     unset ($_SESSION['login']);
                     unset ($_SESSION['senha']);
@@ -36,5 +36,7 @@
     }
     
     echo "<link href='css/bootstrap.min.css' rel='stylesheet'><link href='css/style.css' rel='stylesheet'><div class='container droppedHover text-center'>
-    <div class='form-group'><div class='col-md-12'><a href='login.html' class='btn btn-lg btn-primary'>Voltar</a></div></div></div>";
+    <div class='form-group'><div class='col-md-12'><a href='index.php' class='btn btn-lg btn-primary'>Voltar</a></div></div></div>";
+    
+    pg_close($conexao);
 ?>

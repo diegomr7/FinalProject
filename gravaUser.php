@@ -51,4 +51,6 @@
     
     echo "<link href='css/bootstrap.min.css' rel='stylesheet'><link href='css/style.css' rel='stylesheet'><div class='container droppedHover text-center'>
     <div class='form-group'><div class='col-md-12'><a href='cadUser.php' class='btn btn-lg btn-primary'>Voltar</a></div></div></div>";
+    
+    pg_close($conexao);
 ?>

@@ -97,5 +97,5 @@ ALTER TABLE participa
 	ADD PRIMARY KEY (matricula, id_grupo),                                         --Chave primária tabela participa
 	ADD CONSTRAINT matricula FOREIGN KEY (matricula) REFERENCES aluno (matricula), --Chave estrangeira tabela participa/aluno
 	ADD CONSTRAINT id_grupo FOREIGN KEY (id_grupo) REFERENCES grupo (id); 	       --Chave estrangeira tabela participa/grupo 		
-	
-INSERT INTO usuario (login, senha, nome, categoria, situacao) VALUES ('admin', MD5('admin'), 'admin', 'c', 'a'); --Usuario admin para acessar o sistema pela primeira vez; Alterar a senha após o primeiro login 	
+
+INSERT INTO usuario (login, senha, nome, categoria, situacao) VALUES ('admin', MD5('admin'), 'admin', 'c', 'a'); --Usuario admin para acessar o sistema pela primeira vez; Alterar a senha após o primeiro login			
