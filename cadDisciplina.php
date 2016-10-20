@@ -107,7 +107,7 @@
                               <div class="form-group">
                               <label class="col-md-4 control-label" for="numero">Código:</label>  
                                    <div class="col-md-4">
-                                        <input id="numero" name="numero" type="number" placeholder="Código..." class="form-control input-md">
+                                        <input id="codigo" name="codigo" type="number" placeholder="Código..." class="form-control input-md">
                                    </div>
                               </div>
                               
