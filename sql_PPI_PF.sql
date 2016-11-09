@@ -45,7 +45,7 @@ CREATE TABLE curso (
 ALTER TABLE curso OWNER TO senac;
 
 CREATE TABLE projeto (
-				num_proj serial PRIMARY KEY NOT NULL,
+				numero serial PRIMARY KEY NOT NULL,
 				ano INT NOT NULL,                 --Obrigatório; 4 digitos
 				semestre INT NOT NULL,		  --Obrigatório; apenas 1 digitos, sendo: 1 para primeiro semestre 2 para segundo semestre 
 				modulo CHAR(3),			  --Representa o módulo do curso em algarismo romano: Os valores possíveis são: I, II, III, IV, V
