@@ -100,9 +100,10 @@
                               $matricula = substr($linha['matricula'],0,-2);
                               $sigla = substr($linha['sigla'],0,-1);
           ?>
-                         <tr id="<?php echo $matricula; ?>">
+                         <tr>
                               <td><?php echo $matricula; ?></td>
                               <td><?php echo $linha['nome']; ?></td>
+                              <!-- <td><?php //echo strtoupper($linha['sexo']); ?></td>-->
                               <td><?php echo $linha['curso']; ?></td>
                               
           <?php
@@ -111,13 +112,13 @@
                               
                               <td class="actions">
                                    <form action="editAluno.php" method="post">
+                                        <a class="btn btn-success btn-xs" href="<?php echo $link; ?>">P. Integrador</a>
           <?php
                               if (isset($_SESSION['categoria'])) { if ($_SESSION['categoria'] == "c") { ?>
                                         <input name="matricula" id="matricula" type="hidden" value="<?php echo $matricula; ?>" />
-                                        <button class='btn btn-warning btn-xs'><span class="glyphicon glyphicon-edit"></span></button>
-                                        <a class='btn btn-danger btn-xs'  href='#'><span class="glyphicon glyphicon-trash"></span></a>
+                                        <button class='btn btn-warning btn-xs'>Editar</button>
+                                        <a class='btn btn-danger btn-xs'  href='#'>Excluir</a>
           <?php } } ?>
-                                        <a class="btn btn-success btn-xs" href="<?php echo $link; ?>">P. Integrador</a>
                                    </form>
                               </td>
                          </tr>
@@ -129,7 +130,7 @@
                          if ($linha1 != "") {
                               $matricula = substr($linha1['matricula'],0,-2);
           ?>
-                         <tr id="<?php echo $matricula; ?>">
+                         <tr>
                               <td><?php echo $matricula; ?></td>
                               <td><?php echo $linha1['nome']; ?></td>
                               <td></td>
@@ -138,8 +139,8 @@
           <?php
                               if (isset($_SESSION['categoria'])) { if ($_SESSION['categoria'] == "c") { ?>
                                         <input name="matricula" id="matricula" type="hidden" value="<?php echo $matricula; ?>" />
-                                        <button class='btn btn-warning btn-xs'><span class="glyphicon glyphicon-edit"></span></button>
-                                        <a class='btn btn-danger btn-xs'  href='#'><span class="glyphicon glyphicon-trash"></span></a>
+                                        <button class='btn btn-warning btn-xs'>Editar</button>
+                                        <a class='btn btn-danger btn-xs'  href='#'>Excluir</a>
           <?php } } ?>
                                    </form>
                               </td>

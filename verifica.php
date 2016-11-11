@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
     session_start();
      
@@ -8,13 +7,4 @@
         </script>";
         exit();
     }
-=======
-<?php
-    session_start();
-     
-    if (empty($_SESSION['login'])) {
-        header('Location: login.html');
-        exit();
-    }
->>>>>>> 9dfcfb12ae2d9ca286488238584b6f3ef461b2a8
 ?>
