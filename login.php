@@ -17,7 +17,7 @@
                     $_SESSION['nome'] = $consulta['nome'];
                     $_SESSION['categoria'] = $consulta['categoria'];
                     $_SESSION['situacao'] = $consulta['situacao'];
-                    header('location:index.php');
+                    header('location:'.$_SESSION['path']);
                 } else {
                     unset ($_SESSION['login']);
                     unset ($_SESSION['senha']);

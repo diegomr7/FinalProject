@@ -99,7 +99,7 @@
                                                   
                                                   if($total > 0) {
                                                        do {
-                                                            echo "<option value='".$linha['num_proj']."'>".$linha['tema']."</option>";
+                                                            echo "<option value='".$linha['numero']."'>".$linha['tema']."</option>";
                                                        }while($linha = pg_fetch_assoc($dados));
                                                   }
                                              ?>

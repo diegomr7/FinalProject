@@ -40,7 +40,7 @@
                <li role="presentation" <?php $pos = strripos($PATH, "notas"); if ($pos !== false) { echo "class='active'"; } ?>><a href="cadNotas.php">Notas</a></li>
                <?php } ?>
                <li role="presentation" <?php $pos = strripos($PATH, "perfil"); if ($pos !== false || $PATH == "alterarSenha.php") { echo "class='active'"; } ?>>
-                    <?php if (empty($_SESSION['login'])) { echo "<a href='' data-toggle='modal' data-target='#delete-modal'>Login</a>"; } else { echo "<a href='#' data-toggle='dropdown' class='dropdown-toggle'>".$_SESSION['login']; ?></a>
+                    <?php if (empty($_SESSION['login'])) { echo "<a href='' data-toggle='modal' data-target='#login-modal'>Login</a>"; } else { echo "<a href='#' data-toggle='dropdown' class='dropdown-toggle'>".$_SESSION['login']; ?></a>
                     <ul class="dropdown-menu">
                          <li><a href="perfil.php">Perfil</a></li>
                          <li><a href="logout.php">Logout</a></li>

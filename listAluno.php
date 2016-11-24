@@ -2,6 +2,7 @@
      session_start();
      $ArrPATH = explode("/",$_SERVER['SCRIPT_NAME']);
      $PATH = $ArrPATH[count($ArrPATH)-1];
+     $_SESSION['path'] = $PATH;
 ?>
 <!DOCTYPE html>
 <html>
@@ -20,7 +21,7 @@
 
 <body>
      <!-- Modal -->
-     <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+     <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
           <div class="modal-dialog" role="document">
                <div class="modal-content">
                     <div class="modal-body">
@@ -59,118 +60,176 @@
                include 'menu.php';
                include 'conecta.php';
                
-               $pagina=(isset($_GET['pagina']))? $_GET['pagina'] : 1;
-               
-               $sql1 = "SELECT DISTINCT al.matricula, al.nome as nome, cs.nome as curso, cs.sigla as sigla FROM aluno al, participa pr, grupo gr, projeto pj, curso cs
-               WHERE al.matricula = pr.matricula AND pr.id_grupo = gr.id AND gr.num_proj = pj.numero AND pj.num_curso = cs.numero ORDER BY cs.nome";
                $sql2 = "SELECT * FROM aluno WHERE matricula NOT IN (SELECT matricula FROM participa)";
-               $dados = pg_exec($conexao, $sql1);
-               $total = pg_num_rows($dados);
+               $sql3 = "SELECT * FROM curso";
                $dados1 = pg_exec($conexao, $sql2);
-               $total = pg_num_rows($dados) + pg_num_rows($dados1);
-               $registros = 10;
-               $numPaginas = ceil($total/$registros);
-               $inicio = ($registros*$pagina)-$registros;
-            
-               $cmd = "SELECT DISTINCT al.matricula, al.nome as nome, cs.nome as curso, cs.sigla as sigla FROM aluno al, participa pr, grupo gr, projeto pj, curso cs
-               WHERE al.matricula = pr.matricula AND pr.id_grupo = gr.id AND gr.num_proj = pj.numero AND pj.num_curso = cs.numero ORDER BY cs.nome LIMIT $registros OFFSET $inicio";
-               $dados = pg_exec($conexao, $cmd);
-               $linha=pg_fetch_array($dados);
-               $linha1=pg_fetch_array($dados1);
-               
-               if($total > 0) {
-          ?>
-               
-               <div class="row marketing">
-                    <div id="list" class="row">
-                         <div class="table-responsive col-md-12">
-                              <table class="table table-striped" cellspacing="0" cellpadding="0">
-                                   <thead>
-                                        <tr>
-                                             <th>Matrícula</th>
-                                             <th>Nome</th>
-                                             <th>Curso</th>
-                                             <th class="actions"></th>
-                                        </tr>
-                                   </thead>
-                                   
-          <?php
-                    do {
-                         if ($linha != "") {
-                              $matricula = substr($linha['matricula'],0,-2);
-                              $sigla = substr($linha['sigla'],0,-1);
-          ?>
-                         <tr>
-                              <td><?php echo $matricula; ?></td>
-                              <td><?php echo $linha['nome']; ?></td>
-                              <!-- <td><?php //echo strtoupper($linha['sexo']); ?></td>-->
-                              <td><?php echo $linha['curso']; ?></td>
-                              
-          <?php
-                              $link = "http://".$sigla.".projetointegrador.com.br/~".$matricula;
-          ?>
-                              
-                              <td class="actions">
-                                   <form action="editAluno.php" method="post">
-                                        <a class="btn btn-success btn-xs" href="<?php echo $link; ?>">P. Integrador</a>
-          <?php
-                              if (isset($_SESSION['categoria'])) { if ($_SESSION['categoria'] == "c") { ?>
-                                        <input name="matricula" id="matricula" type="hidden" value="<?php echo $matricula; ?>" />
-                                        <button class='btn btn-warning btn-xs'>Editar</button>
-                                        <a class='btn btn-danger btn-xs'  href='#'>Excluir</a>
-          <?php } } ?>
-                                   </form>
-                              </td>
-                         </tr>
-          <?php
-                         }
-                    }while($linha = pg_fetch_assoc($dados));
+               $dados3 = pg_exec($conexao, $sql3);
+               $linha1 = pg_fetch_array($dados1);
+               $linha2 = pg_fetch_array($dados3);
 
-                    do {
-                         if ($linha1 != "") {
-                              $matricula = substr($linha1['matricula'],0,-2);
           ?>
-                         <tr>
-                              <td><?php echo $matricula; ?></td>
-                              <td><?php echo $linha1['nome']; ?></td>
-                              <td></td>
-                              <td class="actions">
-                                   <form action="editAluno.php" method="post">
+               <ul class="nav nav-tabs">
           <?php
-                              if (isset($_SESSION['categoria'])) { if ($_SESSION['categoria'] == "c") { ?>
-                                        <input name="matricula" id="matricula" type="hidden" value="<?php echo $matricula; ?>" />
-                                        <button class='btn btn-warning btn-xs'>Editar</button>
-                                        <a class='btn btn-danger btn-xs'  href='#'>Excluir</a>
-          <?php } } ?>
-                                   </form>
-                              </td>
-                         </tr>
-          <?php
-                         }
-                    }while($linha1 = pg_fetch_assoc($dados1));
-          ?>
-                         </table>
-                    </div>
-               </div>
-               
-               <div id="bottom" class="row">
-                    <div class="col-md-12">
-                         
-                        <ul class="pagination">
-               <?php
-                    for($i = 1; $i < $numPaginas + 1; $i++) {
-                         echo "<li><a href='listAluno.php?pagina=$i'>".$i."</a></li>";
+               $i = 1;
+               do {
+                    if ($i == 1)  {
+                         $class = "class='active'";
+                    } else {
+                         $class = "class=''";
                     }
-               ?>
-                        </ul>
+                    echo "<li ".$class."><a data-toggle='tab' href='#".$linha2['numero']."'>".strtoupper($linha2['sigla'])."</a></li>";
                     
-                    </div>
-               </div>
-          </div>
+                    $i++;
+               } while($linha2 = pg_fetch_assoc($dados3));
+               $dados3 = pg_exec($conexao, $sql3);
+               $linha2 = pg_fetch_array($dados3);
+          ?>
+                    <li><a data-toggle='tab' href="#noProj">A. sem projeto</a></li>
+               </ul>
+               <div class="tab-content">
+          <?php
+               $i = 1;
+               do {
+                    $sql1 = "SELECT DISTINCT al.matricula, al.nome as nome, al.dtnasc, al.sexo, al.cidade, al.uf, cs.nome as curso, cs.sigla as sigla FROM aluno al, participa pr, grupo gr, projeto pj, curso cs
+                    WHERE al.matricula = pr.matricula AND pr.id_grupo = gr.id AND gr.num_proj = pj.numero AND pj.num_curso = cs.numero AND cs.nome = '".$linha2['nome']."' ORDER BY al.nome";
+                    $dados = pg_exec($conexao, $sql1);
+                    $linha = pg_fetch_array($dados);
+                    
+                    if ($i == 1)  {
+                         $class = "class='tab-pane fade in active'";
+                    } else {
+                         $class = "class='tab-pane fade'";
+                    }
+                    echo "<div id='".$linha2['numero']."' ".$class.">";
+                    echo "<h3>".$linha2['nome']."</h3>";
+                    
+                    if(pg_num_rows($dados) > 0) {
+          ?>
+                         <div class="row marketing">
+                              <div id="list" class="row">
+                                   <div class="table-responsive col-md-12">
+                                        <table class="table table-striped" cellspacing="0" cellpadding="0">
+                                             <thead>
+                                                  <tr>
+                                                       <th>Matrícula</th>
+                                                       <th>Nome</th>
+                                                       <th>Sexo</th>
+                                                       <th>Nascimento</th>
+                                                       <th>Cidade</th>
+                                                       <th>UF</th>
+                                                       <th class="actions"></th>
+                                                  </tr>
+                                             </thead>
+                                             <tbody>
+          <?php
+                         do {
+                              if ($linha != "") {
+                                   if ($linha['curso'] == $linha2['nome']) {
+                                        $matricula = trim($linha['matricula']);
+                                        $sigla = trim($linha['sigla']);
+          ?>
+                                                  <tr id='<?php echo "id".$matricula; ?>'>
+                                                       <td><?php echo $matricula; ?></td>
+                                                       <td><?php echo $linha['nome']; ?></td>
+                                                       <td><?php echo strtoupper($linha['sexo']); ?></td>
+                                                       <td><?php echo $linha['dtnasc']; ?></td>
+                                                       <td><?php echo strtoupper($linha['cidade']); ?></td>
+                                                       <td><?php echo strtoupper($linha['uf']); ?></td>
+                              
+          <?php
+                                        $link = "http://".$sigla.".projetointegrador.com.br/~".$matricula;
+          ?>
+                                                       <td class="actions center">
+                                                            <a class="btn btn-success btn-xs" href="<?php echo $link; ?>">P. Integrador</a>&nbsp
+          <?php
+                                        if (isset($_SESSION['categoria'])) { if ($_SESSION['categoria'] == "c") { ?>
+                                                            <form action="editAluno.php" method="post">
+                                                                 <input name="matricula" id="matricula" type="hidden" value="<?php echo $matricula; ?>" />
+                                                                 <button class='btn btn-warning btn-xs'><span class="glyphicon glyphicon-edit"></span></button>&nbsp
+                                                            </form>
+                                                            <button onclick="return excluir('<?php echo $matricula; ?>', '1');" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></button>
+          <?php } } ?>
+                                                       </td>
+                                                  </tr>
+          <?php
+                                   }
+                              }
+                         }while($linha = pg_fetch_assoc($dados));
+
+          ?>
+                                             </tbody>
+                                        </table>
+                                   </div>
+                              </div>
+                         </div>
           <?php
                     } else {
                          echo "<h3 class='text-center'>Nenhum aluno encontrado</h3>";
                     }
+          
+                    echo "</div>";
+                    
+                    $i++;
+               } while($linha2 = pg_fetch_assoc($dados3));
+               
+               echo "<div id='noProj' class='tab-pane fade'><h3>Alunos sem projeto</h3>";
+                    
+                    if (pg_num_rows($dados1) > 0) {
+          ?>
+                         <div class="row marketing">
+                              <div id="list" class="row">
+                                   <div class="table-responsive col-md-12">
+                                        <table class="table table-striped" cellspacing="0" cellpadding="0">
+                                             <thead>
+                                                  <tr>
+                                                       <th>Matrícula</th>
+                                                       <th>Nome</th>
+                                                       <th>Sexo</th>
+                                                       <th>Nascimento</th>
+                                                       <th>Cidade</th>
+                                                       <th>UF</th>
+                                                       <th class="actions"></th>
+                                                  </tr>
+                                             </thead>
+                                             <tbody>          
+          <?php
+                         do {
+                              if ($linha1 != "") {
+                                   $matricula = trim($linha1['matricula']);
+          ?>
+                                                  <tr id='<?php echo "id".$matricula; ?>'>
+                                                       <td><?php echo $matricula; ?></td>
+                                                       <td><?php echo $linha1['nome']; ?></td>
+                                                       <td><?php echo strtoupper($linha1['sexo']); ?></td>
+                                                       <td><?php echo $linha1['dtnasc']; ?></td>
+                                                       <td><?php echo strtoupper($linha1['cidade']); ?></td>
+                                                       <td><?php echo strtoupper($linha1['uf']); ?></td>
+                                                       <td class="actions center">
+                                                            <button disabled class="btn btn-success btn-xs">P. Integrador</button>&nbsp
+          <?php
+                                        if (isset($_SESSION['categoria'])) { if ($_SESSION['categoria'] == "c") { ?>
+                                                            <form action="editAluno.php" method="post">
+                                                                 <input name="matricula" id="matricula" type="hidden" value="<?php echo $matricula; ?>" />
+                                                                 <button class='btn btn-warning btn-xs'><span class="glyphicon glyphicon-edit"></span></button>&nbsp
+                                                            </form>
+                                                            <button onclick="return excluir('<?php echo $matricula; ?>', '1');" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></button>
+          <?php } } ?>
+                                                       </td>
+                                                  </tr>
+          <?php
+                              }
+                         } while($linha1 = pg_fetch_assoc($dados1));
+          ?>
+                                             </tbody>
+                                        </table>
+                                   </div>
+                              </div>
+                         </div>
+          <?php
+                    } else {
+                         echo "<h3 class='text-center'>Nenhum aluno encontrado</h3>";
+                    }
+                    echo "</div>";
           ?>
           
           <footer class="footer">
@@ -182,5 +241,6 @@
      <script src="js/jquery.min.js"></script>
      <script src="js/bootstrap.min.js"></script>
      <script src="js/funcoes.js"></script>
+     <script src="js/bootbox.min.js"></script>
 </body>
 </html>

@@ -16,5 +16,4 @@
      }
      
      echo "</tbody></table>";
-     header("Content-Type: text/html; charset=utf-8",true);
 ?>

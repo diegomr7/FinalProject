@@ -2,6 +2,7 @@
      session_start();
      $ArrPATH = explode("/",$_SERVER['SCRIPT_NAME']);
      $PATH = $ArrPATH[count($ArrPATH)-1];
+     $_SESSION['path'] = $PATH;
 ?>
 <!DOCTYPE html>
 <html>
@@ -21,7 +22,7 @@
 <body>
      
      <!-- Modal -->
-     <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+     <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
           <div class="modal-dialog" role="document">
                <div class="modal-content">
                     <div class="modal-body">
