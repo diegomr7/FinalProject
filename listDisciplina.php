@@ -88,8 +88,8 @@
                                                   <td><?php echo $linha1['nome']; ?></td>
                                                   <td><?php echo $linha1['ch']; ?></td>
                                                   <td class="actions center">
-                                                       <form action="editGrupo.php" method="post">
-                                                            <input name="id" id="id" type="hidden" value="<?php echo $linha1['codigo']; ?>" />
+                                                       <form action="editDisciplina.php" method="post">
+                                                            <input name="codigo" id="codigo" type="hidden" value="<?php echo $linha1['codigo']; ?>" />
                                                             <button class='btn btn-warning btn-xs'><span class="glyphicon glyphicon-edit"></span></button>&nbsp
                                                        </form>
                                                        <button onclick="return excluir('<?php echo $linha1['codigo']; ?>', '3');" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></button>

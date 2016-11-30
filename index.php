@@ -1,9 +1,3 @@
-<?php
-     session_start();
-     $ArrPATH = explode("/",$_SERVER['SCRIPT_NAME']);
-     $PATH = $ArrPATH[count($ArrPATH)-1];
-     $_SESSION['path'] = $PATH;
-?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +16,7 @@
 <body>
      
      <!-- Modal -->
-     <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+     <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
           <div class="modal-dialog" role="document">
                <div class="modal-content">
                     <div class="modal-body">
@@ -44,7 +38,7 @@
                                    
                                    <div class="form-group">
                                         <div class="col-md-12">
-                                             <button id="enviar" name="enviar" class="btn btn-lg btn-primary btn-block">Enviar</button>
+                                             <button id="enviar" name="enviar" class="btn btn-lg btn-primary btn-block" onclick="return validaLogin()">Enviar</button>
                                         </div>
                                    </div>
                                   
@@ -56,16 +50,63 @@
      </div> <!-- /.modal -->
      
      <div class="container">
-          <?php
-               include 'menu.php';
-          ?>
+          <div class="header clearfix">
+               <nav>
+                    <ul class="nav nav-pills pull-right">
+                         <li role="presentation" class="active"><a href="index.php">Home</a></li>
+                         <li role="presentation">
+                              <a href="#" data-toggle="dropdown" class="dropdown-toggle">Listar</a>
+                              <ul class="dropdown-menu">
+                                   <li><a href="listAluno.php">Aluno</a></li>
+                                   <?php session_start(); if (isset($_SESSION['categoria'])) { if ($_SESSION['categoria'] == "c") { ?>
+                                   <li><a href="listUser.php">Usuário</a></li>
+                                   <li><a href="listCurso.php">Curso</a></li>
+                                   <li><a href="listDisciplina.php">Disciplina</a></li>
+                                   <?php } } ?>
+                              </ul>
+                         </li>
+                         <?php if (isset($_SESSION['categoria'])) { if ($_SESSION['categoria'] == "c") { ?>
+                         <li role="presentation">
+                              <a href="#" data-toggle="dropdown" class="dropdown-toggle">Cadastro</a>
+                              <ul class="dropdown-menu">
+                                   <li><a href="cadAluno.php">Aluno</a></li>
+                                   <li><a href="cadCurso.php">Curso</a></li>
+                                   <li><a href="cadDisciplina.php">Disciplina</a></li>
+                                   <li><a href="cadGrupo.php">Grupo</a></li>
+                                   <li><a href="cadProjeto.php">Projeto</a></li>
+                                   <li><a href="cadUser.php">Usuário</a></li>
+                              </ul>
+                         </li>
+                         <li role="presentation">
+                              <a href="#" data-toggle="dropdown" class="dropdown-toggle">Relatório</a>
+                              <ul class="dropdown-menu">
+                                   <li><a href="cadAluno.php">Aluno</a></li>
+                                   <li><a href="cadUser.php">Usuário</a></li>
+                              </ul>
+                         </li>
+                         <?php } }
+                              if (isset($_SESSION['categoria'])) { if ($_SESSION['categoria'] == "p") { ?>
+                         <li role="presentation"><a href="cadNotas.php">Notas</a></li>
+                         <?php } } ?>
+                         <li role="presentation">
+                              <?php if (empty($_SESSION['login'])) { echo "<a href='#' data-toggle='modal' data-target='#delete-modal'>Login</a>"; } else { echo "<a href='#' data-toggle='dropdown' class='dropdown-toggle'>".$_SESSION['login']; ?></a>
+                              <ul class="dropdown-menu">
+                                   <li><a href="perfil.php">Perfil</a></li>
+                                   <li><a href="logout.php">Logout</a></li>
+                              </ul>
+                              <?php } ?>
+                         </li>
+                    </ul>
+               </nav>
+               <h3 class="text-muted">Final Project</h3>
+          </div>
   
           <div class="jumbotron">
                <!-- Aqui agente fala alguma coisa sobre o trabalho no geral -->
           </div>
   
           <div class="row marketing">
-               <div class="col-lg-12">
+               <div class="col-lg-6">
                     <!-- Aqui agente fala coisas específicas sobre uma parte do trabalho para dar destaque -->
                </div>
           </div>
@@ -79,5 +120,6 @@
      <script src="js/jquery.min.js"></script>
      <script src="js/bootstrap.min.js"></script>
      <script src="js/funcoes.js"></script>
+     <script src="js/bootbox.min.js"></script>
 </body>
 </html>

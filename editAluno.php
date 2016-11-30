@@ -9,8 +9,6 @@
      $sql="SELECT * FROM aluno WHERE matricula = '$matricula'";
      $dados=pg_exec($conexao, $sql);
      $linha=pg_fetch_array($dados);
-     
-
 ?>
 <!DOCTYPE html>
 <html>

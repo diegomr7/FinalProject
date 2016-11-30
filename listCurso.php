@@ -56,8 +56,8 @@
                                                   <td><?php echo $linha1['nome']; ?></td>
                                                   <td><?php echo strtoupper($linha1['sigla']); ?></td>
                                                   <td class="actions center">
-                                                       <form action="editGrupo.php" method="post">
-                                                            <input name="id" id="id" type="hidden" value="<?php echo $linha1['numero']; ?>" />
+                                                       <form action="editCurso.php" method="post">
+                                                            <input name="numero" id="numero" type="hidden" value="<?php echo $linha1['numero']; ?>" />
                                                             <button class='btn btn-warning btn-xs'><span class="glyphicon glyphicon-edit"></span></button>&nbsp
                                                        </form>
                                                        <button onclick="return excluir('<?php echo $linha1['numero']; ?>', '5');" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></button>

@@ -133,7 +133,7 @@
                                                        <td><?php echo $linha['nome']; ?></td>
                                                        <td><?php echo strtoupper($linha['sexo']); ?></td>
                                                        <td><?php echo $linha['dtnasc']; ?></td>
-                                                       <td><?php echo strtoupper($linha['cidade']); ?></td>
+                                                       <td><?php echo mb_strtoupper(($linha['cidade']),'UTF-8'); ?></td>
                                                        <td><?php echo strtoupper($linha['uf']); ?></td>
                               
           <?php
@@ -202,7 +202,7 @@
                                                        <td><?php echo $linha1['nome']; ?></td>
                                                        <td><?php echo strtoupper($linha1['sexo']); ?></td>
                                                        <td><?php echo $linha1['dtnasc']; ?></td>
-                                                       <td><?php echo strtoupper($linha1['cidade']); ?></td>
+                                                       <td><?php echo mb_strtoupper(($linha1['cidade']),'UTF-8'); ?></td>
                                                        <td><?php echo strtoupper($linha1['uf']); ?></td>
                                                        <td class="actions center">
                                                             <button disabled class="btn btn-success btn-xs">P. Integrador</button>&nbsp

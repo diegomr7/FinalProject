@@ -1,8 +1,30 @@
-<div class="header clearfix">
-     <nav>
-          <ul class="nav nav-pills pull-right">
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+     <meta charset="utf-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <title>CRUD com Bootstrap 3</title>
+    
+     <link href="css/bootstrap.min.css" rel="stylesheet">
+     <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+     <div class="header clearfix">
+          <nav class="nav nav-pills pull-right">
+               <div class="container-fluid">
+                    <div class="navbar-header">
+                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                              <span class="sr-only">Toggle navigation</span>
+                              <span class="icon-bar"></span>
+                              <span class="icon-bar"></span>
+                              <span class="icon-bar"></span>
+                         </button>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse">
+                         <ul class="nav nav-pills pull-right">
                <li role="presentation" <?php $pos = strripos($PATH, "index"); if ($pos !== false) { echo "class='active'"; } ?>><a href="index.php">Home</a></li>
-               <li role="presentation" <?php $pos = strripos($PATH, "list"); $pos1 = strripos($PATH, "edit"); if ($pos !== false || $pos1 !== false) { echo "class='active'"; } ?> >
+               <li role="presentation" <?php $pos = strripos($PATH, "list"); $pos1 = strripos($PATH, "edit"); if ($pos !== false || $pos1 !== false && $PATH !== "editarPerfil.php") { echo "class='active'"; } ?> >
                     <a href="#" data-toggle="dropdown" class="dropdown-toggle">Listar</a>
                     <ul class="dropdown-menu">
                          <li><a href="listAluno.php">Aluno</a></li>
@@ -17,13 +39,12 @@
                     </ul>
                </li>
                <?php if (isset($_SESSION['categoria'])) { if ($_SESSION['categoria'] == "c") { ?>
-               <li role="presentation" <?php $pos = strripos($PATH, "cad"); if ($pos !== false && $PATH != "cadNotas.php") { echo "class='active'"; } ?>>
+               <li role="presentation" <?php $pos = strripos($PATH, "cad"); if ($pos !== false) { echo "class='active'"; } ?>>
                     <a href="#" data-toggle="dropdown" class="dropdown-toggle">Cadastro</a>
                     <ul class="dropdown-menu">
                          <li><a href="cadAluno.php">Aluno</a></li>
                          <li><a href="cadCurso.php">Curso</a></li>
                          <li><a href="cadDisciplina.php">Disciplina</a></li>
-                         <li><a href="cadComposto.php">Relacionar disciplina e projeto</a></li>
                          <li><a href="cadGrupo.php">Grupo</a></li>
                          <li><a href="cadProjeto.php">Projeto</a></li>
                          <li><a href="cadUser.php">Usuário</a></li>
@@ -32,10 +53,8 @@
                <li role="presentation" <?php $pos = strripos($PATH, "relat"); if ($pos !== false) { echo "class='active'"; } ?>>
                     <a href="#" data-toggle="dropdown" class="dropdown-toggle">Relatório</a>
                     <ul class="dropdown-menu">
-                         <li><a href="relatAlunos.php">Relação de alunos</a></li>
-                         <li><a href="relatGrupo.php">Relação de grupos</a></li>
-                         <li><a href="relatProj.php">Relação de projetos</a></li>
-                         <li><a href="relatProjAluno.php">Relação de projetos por aluno</a></li>
+                         <li><a href="cadAluno.php">Aluno</a></li>
+                         <li><a href="cadUser.php">Usuário</a></li>
                     </ul>
                </li>
                <?php } }
@@ -51,6 +70,12 @@
                     <?php } ?>
                </li>
           </ul>
-     </nav>
-     <h3 class="text-muted">Final Project</h3>
-</div>
+                    </div>
+               </div>
+          </nav>
+          <h3 class="text-muted">Final Project</h3>
+     </div>
+     <script src="js/jquery.min.js"></script>
+     <script src="js/bootstrap.min.js"></script>
+</body>
+</html>

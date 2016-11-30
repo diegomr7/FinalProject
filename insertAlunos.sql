@@ -45,17 +45,17 @@ INSERT INTO curso (numero, nome, sigla)
                ('2', 'Gestão de Tecnologia da Informação', 'gti'),
                ('3', 'Segurança da Informação', 'si');
                
-INSERT INTO projeto(numero, ano, semestre, modulo, dt_inicio, dt_termino, tema, descricao, num_curso)
+INSERT INTO projeto(ano, semestre, modulo, dt_inicio, dt_termino, tema, descricao, num_curso)
 	VALUES    ('2015', '1', 'I', '2015-2-21', '2015-3-8', 'Arcade I', 'Criar o primeiro jogo', '1'),
-               ('2015', '2', 'II', '2015-11-11', '2015-11-26', 'Arcade 2', 'Criar o segundo jogo'', '1'),
-               ('2016', '1', 'III', '2016-4-13', '2016-4-28', 'Arcade 3', 'Criar o terceiro jogo'', '1'),
-               ('2015', '1', 'I', '2015-5-17', '2015-6-2', 'TI Verde', 'Técnicas de sustentabilidade'', '2'),
-               ('2015', '2', 'II', '2015-12-1', '2015-12-17', 'Gerencia de Processos', 'Gestão de processos de TI'', '2'),
-               ('2016', '1', 'III', '2016-1-28', '2016-2-15', 'Gerencia de Projetos', 'Técnicas para gerir processos'', '2'),
-               ('2015', '1', 'I', '2015-2-23', '2015-3-10', 'Exploração de Pentest', 'Resultados da fase de exploração'', '3'),
-               ('2015', '2', 'II', '2015-10-13', '2015-10-28', 'Man-in-the-midlle', 'Executar o ataque e relatar resultados'', '3'),
-               ('2016', '1', 'III', '2016-2-27', '2016-3-14', 'Planejamento de Segurança', 'Hardning do SO'', '3'),
-               ('2016', '2', 'IV', '2016-7-12', '2016-7-27', 'Politica de Segurança da Informação', 'Elaboração de um documento Politica de Segurança da Informação'', '3');
+               ('2015', '2', 'II', '2015-11-11', '2015-11-26', 'Arcade 2', 'Criar o segundo jogo', '1'),
+               ('2016', '1', 'III', '2016-4-13', '2016-4-28', 'Arcade 3', 'Criar o terceiro jogo', '1'),
+               ('2015', '1', 'I', '2015-5-17', '2015-6-2', 'TI Verde', 'Técnicas de sustentabilidade', '2'),
+               ('2015', '2', 'II', '2015-12-1', '2015-12-17', 'Gerencia de Processos', 'Gestão de processos de TI', '2'),
+               ('2016', '1', 'III', '2016-1-28', '2016-2-15', 'Gerencia de Projetos', 'Técnicas para gerir processos', '2'),
+               ('2015', '1', 'I', '2015-2-23', '2015-3-10', 'Exploração de Pentest', 'Resultados da fase de exploração', '3'),
+               ('2015', '2', 'II', '2015-10-13', '2015-10-28', 'Man-in-the-midlle', 'Executar o ataque e relatar resultados', '3'),
+               ('2016', '1', 'III', '2016-2-27', '2016-3-14', 'Planejamento de Segurança', 'Hardning do SO', '3'),
+               ('2016', '2', 'IV', '2016-7-12', '2016-7-27', 'Politica de Segurança da Informação', 'Elaboração de um documento Politica de Segurança da Informação', '3');
                
 INSERT INTO grupo(id, nome, num_proj)
 	VALUES    ('1', 'GAB', '1'),

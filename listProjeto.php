@@ -96,8 +96,8 @@
                                                   <td><?php echo $linha1['dt_inicio']; ?></td>
                                                   <td><?php echo $linha1['dt_termino']; ?></td>
                                                   <td class="actions center">
-                                                       <form action="editGrupo.php" method="post">
-                                                            <input name="id" id="id" type="hidden" value="<?php echo $linha1['numero']; ?>" />
+                                                       <form action="editProjeto.php" method="post">
+                                                            <input name="numero" id="numero" type="hidden" value="<?php echo $linha1['numero']; ?>" />
                                                             <button class='btn btn-warning btn-xs'><span class="glyphicon glyphicon-edit"></span></button>&nbsp
                                                        </form>
                                                        <button onclick="return excluir('<?php echo $linha1['numero']; ?>', '4');" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></button>

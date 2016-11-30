@@ -19,6 +19,40 @@
 </head>
 
 <body>
+     <!-- Modal -->
+     <div class="modal fade" id="senha-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+          <div class="modal-dialog" role="document">
+               <div class="modal-content">
+                    <div class="modal-body">
+                         <form action="atualizaSenhas.php" method="post" class="form-signin center">
+                              <fieldset>
+                                   <legend>Alterar senha</legend>
+                                   
+                                   <div class="form-group">
+                                        <div class="col-md-12">
+                                             <input name="senha" id="senha" type="password" placeholder="informe sua senha..." class="form-control input-md">
+                                        </div>
+                                   </div>
+                                   
+                                   <div class="form-group">
+                                        <div class="col-md-12">
+                                             <input name="confirmacao" id="confirmacao" type="password" placeholder="informe sua senha..." class="form-control input-md">
+                                        </div>
+                                   </div>
+                                   
+                                   <div class="form-group">
+                                        <div class="col-md-12">
+                                             <button id="enviar" name="enviar" class="btn btn-lg btn-primary btn-block">Enviar</button>
+                                        </div>
+                                   </div>
+                                  
+                              </fieldset>
+                         </form>
+                    </div>
+               </div>
+          </div>
+     </div> <!-- /.modal -->
+     
      <div class="container">
           
           <?php
@@ -58,11 +92,12 @@
                                                   <td><?php if ($linha1['categoria'] == "p") { echo "Professor"; } else if ($linha1['categoria'] == "g") { echo "Gerente do P.I"; } else if ($linha1['categoria'] == "c") { echo "Coordenador"; } ?></td>
                                                   <td><?php if ($linha1['situacao'] == "a") { echo "Ativo"; } else if ($linha1['situacao'] == "i") { echo "Inativo"; } ?></td>
                                                   <td class="actions center">
-                                                       <form action="editGrupo.php" method="post">
-                                                            <input name="id" id="id" type="hidden" value="<?php echo $linha1['login']; ?>" />
+                                                       <form action="editUser.php" method="post">
+                                                            <input name="login" id="login" type="hidden" value="<?php echo $linha1['login']; ?>" />
                                                             <button class='btn btn-warning btn-xs'><span class="glyphicon glyphicon-edit"></span></button>&nbsp
                                                        </form>
-                                                       <button onclick="return excluir('<?php echo $linha1['login']; ?>', '6');" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></button>
+                                                       <button onclick="return excluir('<?php echo $linha1['login']; ?>', '6');" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></button>&nbsp
+                                                       <a href='' class='btn btn-warning btn-xs' data-toggle='modal' data-target='#senha-modal'>Alterar senha</a>
                                                   </td>
                                              </tr>
           <?php

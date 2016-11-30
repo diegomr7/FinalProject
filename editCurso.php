@@ -1,8 +1,14 @@
 <?php
+     include 'conecta.php';
      include 'verifica.php';
      
      $ArrPATH = explode("/",$_SERVER['SCRIPT_NAME']);
      $PATH = $ArrPATH[count($ArrPATH)-1];
+     
+     $numero=$_POST['numero'];
+     $sql="SELECT * FROM curso WHERE numero = '$numero'";
+     $dados=pg_exec($conexao, $sql);
+     $linha=pg_fetch_array($dados);
 ?>
 <!DOCTYPE html>
 <html>
@@ -23,39 +29,39 @@
           <?php
                include 'menu.php';
           ?>
-        
+          
           <div class="row marketing">
                <div class="col-lg-12">
-                    <form class="form-horizontal" action="gravaDisciplina.php" method="post">
+                    <form class="form-horizontal" action="gravaCurso.php" method="post">
                          <fieldset>
                       
-                              <legend class="text-center">Cadastro de disciplina</legend>
+                              <legend class="text-center">Editar curso</legend>
                               
                               <div class="form-group">
-                              <label class="col-md-4 control-label" for="numero">Código:</label>  
+                              <label class="col-md-4 control-label" for="numero">Numero:</label>  
                                    <div class="col-md-4">
-                                        <input id="codigo" name="codigo" type="number" placeholder="Código..." class="form-control input-md">
+                                        <input id="numero" name="numero" type="number" class="form-control input-md" value="<?php echo $linha['numero']; ?>" disabled>
                                    </div>
                               </div>
                               
                               <div class="form-group">
                                    <label class="col-md-4 control-label" for="nome">Nome:</label>  
                                    <div class="col-md-6">
-                                        <input id="nome" name="nome" type="text" placeholder="Nome..." class="form-control input-md">
+                                        <input id="nome" name="nome" type="text" placeholder="Nome..." class="form-control input-md" value="<?php echo $linha['nome']; ?>">
                                    </div>
                               </div>
                               
                               <div class="form-group">
-                                   <label class="col-md-4 control-label" for="ch">Carga horária:</label>  
+                                   <label class="col-md-4 control-label" for="sigla">Sigla:</label>  
                                    <div class="col-md-4">
-                                        <input id="ch" name="ch" type="number" placeholder="Carga horária..." class="form-control input-md">
+                                        <input id="sigla" name="sigla" type="text" placeholder="Sigla..." class="form-control input-md" value="<?php echo strtoupper($linha['sigla']); ?>">
                                    </div>
                               </div>
                               
                               <div class="form-group text-center">
                                    <div class="col-md-12">
                                         <input type="submit" id="salvar" name="salvar" class="btn btn-success" value="Enviar"></input>
-                                        <input type="reset" id="limpar" name="limpar" class="btn btn-warning" value="Limpar"></input>
+                                        <a href="listCurso.php" class="btn btn-danger">Voltar</a>
                                    </div>
                               </div>
                          
