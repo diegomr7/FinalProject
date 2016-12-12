@@ -25,13 +25,13 @@
           ?>
           <div class="row marketing">
                <div class="col-lg-12">
-                    <form class="form-horizontal" action="gravaDisciplina.php" method="post">
+                    <form class="form-horizontal" action="gravaComposto.php" method="post">
                          <fieldset>
                       
                               <legend class="text-center">Vincular projeto a uma disciplina</legend>
                               
                               <div class="form-group">
-                                   <label class="col-md-4 control-label" for="curso">Disciplina:</label>
+                                   <label class="col-md-4 control-label" for="disciplina">Disciplina:</label>
                                    <div class="col-md-6">
                                         <select id="disciplina" name="disciplina" class="form-control">
                                              <option value="">Selecione...</option>
@@ -83,7 +83,7 @@
                               
                               <div class="form-group text-center">
                                    <div class="col-md-12">
-                                        <input type="submit" id="salvar" name="salvar" class="btn btn-success" value="Enviar"></input>
+                                        <input type="submit" id="salvar" name="salvar" class="btn btn-success" value="Enviar" onclick="return validaComposto()"></input>
                                         <input type="reset" id="limpar" name="limpar" class="btn btn-warning" value="Limpar"></input>
                                    </div>
                               </div>
@@ -101,5 +101,6 @@
      <script src="js/jquery.min.js"></script>
      <script src="js/bootstrap.min.js"></script>
      <script src="js/funcoes.js"></script>
+     <script src="js/bootbox.min.js"></script>
 </body>
 </html>

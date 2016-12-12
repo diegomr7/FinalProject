@@ -97,5 +97,6 @@
      <script src="js/jquery.min.js"></script>
      <script src="js/bootstrap.min.js"></script>
      <script src="js/funcoes.js"></script>
+	 <script src="js/bootbox.min.js"></script>
 </body>
 </html>

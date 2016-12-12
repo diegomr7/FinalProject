@@ -106,6 +106,8 @@
 											do {
 												echo "<option value='".$linha['numero']."'>".$linha['nome']."</option>";
 											}while($linha = pg_fetch_assoc($dados));
+										}else if($total == 0){
+											echo "<option>nenhum curso encontrado...</option>";
 										}
 									?>
 								</select>
@@ -114,7 +116,7 @@
 					    
 						<div class="form-group text-center">
 							<div class="col-md-12">
-								<input type="submit" id="salvar" name="salvar" class="btn btn-success" value="Enviar"></input>
+								<input type="submit" id="salvar" name="salvar" class="btn btn-success" value="Enviar" onclick="return validaProjeto()"></input>
 								<input type="reset" id="limpar" name="limpar" class="btn btn-warning" value="Limpar"></input>
 							</div>
 						</div>
@@ -133,5 +135,6 @@
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/funcoes.js"></script>
+	<script src="js/bootbox.min.js"></script>
 </body>
 </html>

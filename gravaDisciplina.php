@@ -5,32 +5,22 @@
         $codigo=$_POST['codigo'];
         $nome=$_POST['nome'];
         $ch=$_POST['ch'];
-        $descricao=$_POST['descricao'];
-        $projeto=$_POST['projeto'];
         
         if ($codigo != "") {
             if ($nome != "") {
                 if ($ch != "") {
-                    if ($descricao != "") {
-                        if ($projeto != "") {
-                            $sql1="SELECT * FROM disciplina WHERE codigo='$codigo'";
-                            $result1=pg_exec($conexao, $sql1);
-                            
-                            if (pg_num_rows($result1) == 0) {
-                                $sql2="INSERT INTO disciplina VALUES ('".$codigo."', '".$nome."', '".$ch."')";
-                                $sql3="INSERT INTO composto VALUES ('".$projeto."', '".$codigo."', '".$descricao."')";
-                                pg_exec($conexao, $sql2);
-                                pg_exec($conexao, $sql3);
-                                
-                                echo "<h3 class='text-center'>Cadastro realizado com sucesso!</h3>";
-                            } else {
-                                echo "<h3 class='text-center'>Já existe uma disciplina cadastrada com esse código.</h3>";
-                            }
+                    $sql1="SELECT * FROM disciplina WHERE codigo='$codigo'";
+                    $result1=pg_exec($conexao, $sql1);
+                    
+                    if (pg_num_rows($result1) == 0) {
+                        $sql2="INSERT INTO disciplina VALUES ('".$codigo."', '".$nome."', '".$ch."')";
+                        if (pg_exec($conexao, $sql2)) {
+                            echo "<h3 class='text-center'>Cadastro realizado com sucesso!</h3>";
                         } else {
-                            echo "<h3 class='text-center'>O projeto não foi informado.</h3>";
+                            echo "<h3 class='text-center'>Não foi possível gravar a disciplina!</h3>";
                         }
                     } else {
-                        echo "<h3 class='text-center'>A descricão não foi informada.</h3>";
+                        echo "<h3 class='text-center'>Já existe uma disciplina cadastrada com esse código.</h3>";
                     }
                 } else {
                     echo "<h3 class='text-center'>A carga horária não foi informada.</h3>";

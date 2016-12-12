@@ -139,19 +139,19 @@
                                                   
                                                   if (pg_num_rows($dados2)) {
                                                        echo "<ul class='nav nav-tabs'>";
-                                                            $i = 1;
-                                                            do {
-                                                                 if ($i == 1)  {
-                                                                      $class = "class='active'";
-                                                                 } else {
-                                                                      $class = "class=''";
-                                                                 }
-                                                                 echo "<li ".$class."><a data-toggle='tab' href='#grupo".$linha2['id']."'>".strtoupper($linha2['grupo'])."</a></li>";
-                                                                 
-                                                                 $i++;
-                                                            } while($linha2 = pg_fetch_assoc($dados2));
-                                                            $dados2 = pg_exec($conexao, $sql2);
-                                                            $linha2 = pg_fetch_array($dados2);
+                                                       $i = 1;
+                                                       do {
+                                                            if ($i == 1)  {
+                                                                 $class = "class='active'";
+                                                            } else {
+                                                                 $class = "class=''";
+                                                            }
+                                                            echo "<li ".$class."><a data-toggle='tab' href='#grupo".$linha2['id']."'>".strtoupper($linha2['grupo'])."</a></li>";
+                                                            
+                                                            $i++;
+                                                       } while($linha2 = pg_fetch_assoc($dados2));
+                                                       $dados2 = pg_exec($conexao, $sql2);
+                                                       $linha2 = pg_fetch_array($dados2);
                                                        echo "</ul><div class='tab-content'>";
                                                        
                                                        $i = 1;

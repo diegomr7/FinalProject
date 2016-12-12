@@ -29,7 +29,7 @@
                     <form class="form-horizontal" method="post">
                          <fieldset>
                       
-                              <legend class="text-center">Relação de alunos</legend>
+                              <legend class="text-center">Relação de alunos por curso</legend>
                               
                               <div class="form-group">
                                    <label class="col-md-4 control-label" for="curso">Curso:</label>
@@ -82,7 +82,7 @@
                                    <div class="col-md-2">
                                         <select id="semestre" name="semestre" class="form-control">
                                              <option value="">Selecione...</option>
-                                             <<?php
+                                             <?php
                                                   include 'conecta.php';
                                                   
                                                   $sql = "SELECT DISTINCT semestre FROM projeto";
